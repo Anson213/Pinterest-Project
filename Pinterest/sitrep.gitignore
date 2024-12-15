@@ -1,0 +1,5 @@
+Entry 1: Server returns "unable to resolve import failure"
+         1. JsxRunTime: "classic" <- was added, then -> JsxRunTime: "automatic" was taken.
+         2. Named imports were changed to Default imports and the import lines in app.jsx 
+         3. Imports path were assigned beginning from C:/
+         4. Aliases need to be repaired or reiterated 
