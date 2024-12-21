@@ -10,8 +10,8 @@ const MoreOptionsBtn = ({isWindowVisible, toggleWindow}) => {
 }
 
     return (
-      <div onClick={()=>toggleWindow('more-options')}>
-
+      <div onClick={()=>toggleWindow(isWindowVisible ? '':'more-options')}>
+       Options 
       </div>
     );
 }

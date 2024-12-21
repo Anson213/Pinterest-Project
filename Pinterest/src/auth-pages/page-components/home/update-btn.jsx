@@ -9,8 +9,8 @@ const UpdateBtn = ({isWindowVisible, toggleWindow}) => {
     toggleWindow: PropTypes.func 
 }
     return (
-      <div onClick={()=>toggleWindow('update')}>
-
+      <div onClick={()=>toggleWindow(isWindowVisible ? '' : 'update')}>
+       Updates
       </div>
     );
 }

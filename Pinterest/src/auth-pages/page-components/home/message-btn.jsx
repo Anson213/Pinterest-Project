@@ -10,8 +10,8 @@ const MessageBtn = ({isWindowVisible, toggleWindow}) => {
 }
 
     return (
-      <div onClick={()=>toggleWindow('message')}>
-
+      <div onClick={()=>toggleWindow(isWindowVisible ? '' :'message')}>
+       Message
       </div>
     );
 }

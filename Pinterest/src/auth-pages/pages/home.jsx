@@ -5,7 +5,7 @@
 
 const Home = () => {
     return (
-        <>
+        <div className='home-page'>
         <div className="board-selection-div">
             <div className="button-div">All</div>
             <div className="button-div"></div>
@@ -13,7 +13,7 @@ const Home = () => {
         <div className="content-feed-div">
             <h1>Home Says HI !!</h1>
         </div>
-        </>
+        </div>
     )
 };
 

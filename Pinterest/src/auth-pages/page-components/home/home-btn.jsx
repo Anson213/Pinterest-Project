@@ -7,6 +7,7 @@ const navigate = useNavigate();
 
   return (
     <div onClick={()=>navigate('/')}>
+      Home
     </div>
   )
 }
