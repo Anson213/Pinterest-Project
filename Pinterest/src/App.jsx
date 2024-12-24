@@ -3,11 +3,11 @@ import { useState } from 'react'
 import './App.css'
 import NavigationColumn from 'C:/Users/HP/OneDrive/Desktop/Pinterest/Pinterest/src/auth-pages/high-order-components/home/navigation-column.jsx';
 import {Routes, Route} from 'react-router-dom';
-import Updates from 'C:/Users/HP/OneDrive/Desktop/Pinterest/Pinterest/src/auth-pages/pages/update'
-import Messages from 'C:/Users/HP/OneDrive/Desktop/Pinterest/Pinterest/src/auth-pages/pages/message'
-import MoreOptions from 'C:/Users/HP/OneDrive/Desktop/Pinterest/Pinterest/src/auth-pages/pages/more-options'
-import Home from 'C:/Users/HP/OneDrive/Desktop/Pinterest/Pinterest/src/auth-pages/pages/home'
-import Create from 'C:/Users/HP/OneDrive/Desktop/Pinterest/Pinterest/src/auth-pages/pages/create'
+import Updates from 'C:/Users/HP/OneDrive/Desktop/Pinterest/Pinterest/src/auth-pages/pages/update.jsx'
+import Messages from 'C:/Users/HP/OneDrive/Desktop/Pinterest/Pinterest/src/auth-pages/pages/message.jsx'
+import MoreOptions from 'C:/Users/HP/OneDrive/Desktop/Pinterest/Pinterest/src/auth-pages/pages/more-options.jsx'
+import Home from 'C:/Users/HP/OneDrive/Desktop/Pinterest/Pinterest/src/auth-pages/pages/home.jsx'
+import Create from 'C:/Users/HP/OneDrive/Desktop/Pinterest/Pinterest/src/auth-pages/pages/create.jsx'
 
 
 function App() {

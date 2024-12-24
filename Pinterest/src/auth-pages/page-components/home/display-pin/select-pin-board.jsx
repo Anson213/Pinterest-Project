@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types'
 
+//different boards need to be rendered in the save Div. Use get/fetch.
+
 
 const SelectBoard = ({PinWindowVisible, SetPinWindowVisible}) => {
 

@@ -1,8 +1,5 @@
 import { useRef, useState } from "react";
-import MoreOptions from 'C:/Users/HP/OneDrive/Desktop/Pinterest/Pinterest/src/auth-pages/pages/pin-pages/more-options-pin-window.jsx'
-import SavePinBoardSelection from 'C:/Users/HP/OneDrive/Desktop/Pinterest/Pinterest/src/auth-pages/pages/pin-pages/save-pin-board-window.jsx'
-import UploadPin from 'C:/Users/HP/OneDrive/Desktop/Pinterest/Pinterest/src/auth-pages/pages/pin-pages/upload-pin-card-window.jsx'
-//btns below and pages above 
+//btns below 
 import SaveBoardBtn from 'C:/Users/HP/OneDrive/Desktop/Pinterest/Pinterest/src/auth-pages/page-components/home/display-pin/save-to-board-btn.jsx'
 import UploadPinBtn from 'C:/Users/HP/OneDrive/Desktop/Pinterest/Pinterest/src/auth-pages/page-components/home/display-pin/upload-pin-btn.jsx'
 import MoreOptionsBtn from 'C:/Users/HP/OneDrive/Desktop/Pinterest/Pinterest/src/auth-pages/page-components/home/display-pin/more-options-pin.jsx'
@@ -50,7 +47,7 @@ const DisplayPin = ({mediaSrc, isVideo}) => {
           <SaveBoardBtn/>
           <MoreOptionsBtn  PinWindowVisible={PinWindowVisible} SetPinWindowVisible={SetPinWindowVisible}/>
           <UploadPinBtn  PinWindowVisible={PinWindowVisible} SetPinWindowVisible={SetPinWindowVisible}/>
-          <ImageLinkBtn/>
+          <ImageLinkBtn link={link}/>
         </div>
       </div> 
       <div className='pin-name-header'></div>
