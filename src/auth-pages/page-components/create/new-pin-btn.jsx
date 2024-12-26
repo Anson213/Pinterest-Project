@@ -1,18 +1,19 @@
 import PropTypes from 'prop-types';
 
 
-const NewPinBtn = ({CreatePinLook}) => {  
+const NewPinBtn = ({CreatePinLook, clearFields }) => {  
     
     NewPinBtn.propTypes = {
         CreatePinLook: PropTypes.bool,
+        clearFields: PropTypes.func
     }
 
     return (
         <div className="new-pin-btn">
             {                   
             CreatePinLook === false ? 
-            <button>+</button> : 
-            <button>Create New Pin </button>
+            <div onClick={clearFields}>+</div> : 
+            <div onClick={clearFields}>Create New Pin </div>
             }
         </div>
     )

@@ -20,7 +20,7 @@ const ExpandContract = ({Visibility, setVisibility, CreatePinLook, setCreatePinB
     return (
         <div className="expand-contract">
                 <button onClick={() => Stater()} >
-                  {Visibility === false ? "Expand" : "Contract"}
+                  {Visibility === false ? ">>" : "<<"}
                 </button>
         </div>
     )

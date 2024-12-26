@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect  } from "react";
 import PublishBtn from 'C:/Users/HP/OneDrive/Desktop/Pinterest/Pinterest/src/auth-pages/page-components/create/publish-btn.jsx'
-
+import axios from 'axios';  
+import DraftColumn  from "C:/Users/HP/OneDrive/Desktop/Pinterest/Pinterest/src/auth-pages/high-order-components/create/draft-column.jsx"
 
 //The tag input is actually a search bar with an on command result space.
 //Same goes for the board input.
@@ -15,6 +16,16 @@ const Inputs = () => {
         board: "",
         tag:"",
     })
+
+     const clearFields = () => { 
+      setFormData({ 
+          media:"",
+          title: "",
+          description: "",
+          link: "",
+          board: "",
+          tag:"",
+      })};
 
     const handlePublish = async () => {
         try {
@@ -41,13 +52,39 @@ const Inputs = () => {
         }
       };
 
+
+      useEffect(() => {
+    
+      const postData = async () => {
+          try {
+              const response = await axios.post('/api/pin', formData, {
+                  headers: {
+                      'Content-Type': 'application/json',
+                  },
+              });
+
+              if (response.status === 200) {
+                  console.log('Pin data sent successfully!');
+              } else {
+                  console.log('Failed to update pin');
+              }
+          } catch (error) {
+              console.error('Error while sending form data:', error);
+          }
+      };
+
+      if (Object.values(formData).some(value => value !== "")) {
+          postData();
+      }
+  }, [formData]); 
+
+
     useEffect(() => {
-        // Example fetch request to the backend
+        
         fetch("https://api.example.com/getPinData")
           .then((response) => response.json())
           .then((data) => {
-            // Set the fetched data into the state
-            setFormData({
+              setFormData({
                 image: data.image,
                 title: data.title,
                 description: data.description,
@@ -73,7 +110,10 @@ const Inputs = () => {
             <h1>Create Pin</h1>
             <PublishBtn handlePublish={handlePublish}/>
         </div>
-        <div className="inputs">
+            <div className="draft-column">
+            <DraftColumn clearFields={clearFields}/>
+            </div>
+                <div className="inputs">
                 <div className="input-files">
                    <div className="Input-picture"></div>
                     <div className="First-text">Choose a file or drag and drop it here.</div>
@@ -83,7 +123,12 @@ const Inputs = () => {
                   <input 
                     accept="image/bmp,image/gif,image/jpeg,image/png,image/tiff,image/webp,video/mp4,video/x-m4v,video/quicktime"
                     type="file"
-                    style="cursor: pointer; height: 100%; opacity: 0; position: absolute; width: 100%; left: 0px; top: 0px; font-size: 0px;"
+                    style={{ 
+                       cursor: "pointer", height: "100%",
+                       opacity: 0, position: "absolute",
+                       width: "100%", left: "0px",
+                       top: "0px", fontSize: "0px"
+                     }}
                     multiple="" tabIndex="0"
                     value={formData.media} onChange={handleInputChange} />
                </div>

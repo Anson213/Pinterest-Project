@@ -8,6 +8,7 @@ import Messages from 'C:/Users/HP/OneDrive/Desktop/Pinterest/Pinterest/src/auth-
 import MoreOptions from 'C:/Users/HP/OneDrive/Desktop/Pinterest/Pinterest/src/auth-pages/pages/more-options.jsx'
 import Home from 'C:/Users/HP/OneDrive/Desktop/Pinterest/Pinterest/src/auth-pages/pages/home.jsx'
 import Create from 'C:/Users/HP/OneDrive/Desktop/Pinterest/Pinterest/src/auth-pages/pages/create.jsx'
+import SearchBar from 'C:/Users/HP/OneDrive/Desktop/Pinterest/Pinterest/src/auth-pages/page-components/home/search-bar.jsx'
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
 
   return (
     <>
+    <SearchBar/>
       <NavigationColumn isWindowVisible={isWindowVisible} toggleWindow={toggleWindow} />
       {isWindowVisible === 'update' && <Updates />}
       {isWindowVisible === 'more-options' && <MoreOptions />}
