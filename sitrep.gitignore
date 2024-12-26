@@ -1,9 +1,0 @@
-Entry 1: Server returns "unable to resolve import failure"
-         1. JsxRunTime: "classic" <- was added, then -> JsxRunTime: "automatic" was taken.
-         2. Named imports were changed to Default imports and the import lines in app.jsx 
-         3. Imports path were assigned beginning from C:/
-         4. Aliases need to be repaired or reiterated 
-Entry 2: Common Powershell Commands 
-         Set-Location  -> Set dir location 
-         Remove-Item -> Deletes the given file -- "C:/././././File-to-delete.abc" 
-         continue -> -Force deletes files only and -Recurse -Force deletes the entire folder, add "," to delete more files at once
