@@ -1,91 +1,92 @@
 import {useContext} from 'react';
 import HomeImage from '../../assets/home.png';
-import {PageContext} from '../../contexts/show-page-context.jsx';
+import CreateImg from '../../assets/add.png';
+import UpdateImg from '../../assets/bell.png';
+import MessageImg from '../../assets/messenger.png';
+import SettingImg from '../../assets/setting.png';
+import { PageContext } from '../../contexts/show-page-context.jsx';
 //nav -> div -> 1.large button div, 2.setting div  -> button spacing div -> buttons -> button image div -> image 
 
 
-
-
 const NavCol = () => {
- 
-    const [showPage, setShowPage] = useContext(PageContext);
+    const {showPage, setShowPage} = useContext(PageContext);
+
+    const Housing ={
+        height: '100%',
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        backgroundColor: 'gray'
+    }
+
+    const DivStyle ={
+        height: '78px',
+        width: '48px',
+        padding:'20px',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        margin:'10px'
+    }
+
+    const MoreOptionDiv ={
+        height: '78px',
+        width: '48px',
+        padding:'20px',
+        marginTop: '220px',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+    }
+
+
+    const IconStyle ={
+        height: '25px',
+        width: '25px',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+    }
+
 
     return (
-       <nav id='VerticalNavContent' style={{borderRight: '1px solid black', height:'100vh', 
-        width:'72px', zIndex:'700', padding:'0 0 0 0 '      }}>
-        
+        <div className="nav-col" style={Housing}>
 
-        <div className="nav-buttons" style={{height: '100%'}}>
-            <div className="divisions" style={{ gap:' 24px', height: '100%'}}>
-                <div className="placeholder" style={{gap: '24px'}}>
-                    <div className='button'> 
-                        <div aria-label='Home'>
-                          <div onClick={() => setShowPage(  showPage ? '' : 'home')}>
-                              <div style={{backgroundColor: 'transparent', height:'48px', width:'48px'}}>
-                                <div    style={{ fontSize: '12px', cursor:' pointer',  color: 'inherit',
-                                        display: 'block', boxSizing: 'border-box', backgroundSize: 'cover',
-                                        height:' 20px',  width: '20px', padding:'25px'}} >
-                                    <img src={HomeImage} alt='Home' style={{height:'20px', width:'20px'}}/>
-                                </div>
-                              </div>
-                          </div>
-                        </div>
-                    </div>
+            <div className="nav-item" style={DivStyle}>
+                <div className="nav-icon" >
+                    <img src={HomeImage} alt='home' style={IconStyle} />
                 </div>
-              </div>    
             </div>
-            <div className="divisions">
-                <div className="placeholder"  style={{ gap:' 24px', height: '100%'}}>
-                    <div className="placeholder" style={{gap: '24px'}}>
-                    <div className='button'>
-                        <div aria-label='Create'>
-                          <div onClick={() => setShowPage(  showPage ? '' : 'create')}>
-                                <div>
-                                    <div></div>
-                                </div>
-                          </div>
-                        </div>
-                         </div>
-                    </div>
-                    </div>    
+
+            <div className="nav-item" style={DivStyle}>
+                <div className="nav-icon">
+                    <img src={CreateImg} alt='Create' style={IconStyle}/>
                 </div>
-                <div className="divisions">
-                  <div className="placeholder">
-                    <div className='button'>
-                      <div aria-label='Notifications'>
-                          <div onClick={()=> setShowPage(  showPage ? '' : 'updates')}>
-                                <div></div>
-                          </div>
-                      </div>
-                    </div>    
+            </div>
+
+            <div className="nav-item" style={DivStyle}>
+                <div className="nav-icon" onClick={() => setShowPage(showPage ? '' : 'update')}>
+                    <img src={UpdateImg} alt='Updates' style={IconStyle}/>
                 </div>
+            </div>
+
+            <div className="nav-item" style={DivStyle}>
+                <div className="nav-icon" onClick={() => setShowPage(showPage ? '' : 'message')}>
+                    <img src={MessageImg} alt='Messages' style={IconStyle}/>
                 </div>
-                <div className="divisions">
-                <div className="placeholder">
-                    <div className='button'>
-                        <div aria-label='Messages'>
-                          <div onClick={() => setShowPage(  showPage ? '' : 'message')}>
-                                <div></div>
-                          </div>
-                        </div>
-                    </div>
+            </div>
+
+            <div className="nav-item" style={MoreOptionDiv}>
+                <div className="nav-icon" onClick={() => setShowPage(showPage ? '' : 'more-option')}>
+                    <img src={SettingImg} alt='Messages' style={IconStyle}/>
                 </div>
+            </div>
+
         </div>
-        <div className="nav-settings-btn">
-        <div className="divisions">
-                <div className="placeholder">
-                    <div>
-                    <div>
-                          <a>
-                              <div></div>
-                          </a>
-                        </div>
-                    </div>
-                    </div>    
-                </div>
-        </div>
-       </nav>
-    )
+    );
 }
 
 export default NavCol;
+
+//style={{backgroundColor:'black', height:'100vh', width:'72px', padding:'20px', top:'-20px', left:'-20px'}} className='d-flex flex-column position-fixed h-100 bg-light text-center'
