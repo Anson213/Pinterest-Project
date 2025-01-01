@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import {Routes, Route} from 'react-router-dom'
 import NavColumn from './high-order-component/home/navigation-column.jsx'
 import SearchDiv from './high-order-component/home/search-div.jsx'
+import SearchExtra from './high-order-component/home/search-extra.jsx'
 import './App.css'
 import { PageContext } from './contexts/show-page-context.jsx'
 import Home from './pages/home/home.jsx'
@@ -47,12 +48,10 @@ function App() {
       <div className="col-md-9 right-column" style={{ height: '100%', width:'100%', display: 'flex', flexDirection: 'column', backgroundColor: 'blue', }}>
         
         {/* Search Row */}
-        <div style={{height:'12.5%', width:'100%',  zIndex:"1", display:'flex', flexDirection:'row', border:'1px solid black', backgroundColor:'gray'}}> 
-          
-          <SearchDiv/>
-         
-        </div>
-        
+          <div style={{height:'12.5%', width:'100%',  zIndex:"1", display:'flex', flexDirection:'row', border:'1px solid black', backgroundColor:'gray'}}> 
+            <SearchDiv/>
+          </div>
+
         {/* Page Row */}
         <div className="bottom-row" style={{ flexGrow: 1, backgroundColor: 'grey', display: 'flex', height: '90%'}}>
           <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'row' }}>
