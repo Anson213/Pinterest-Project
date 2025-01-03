@@ -3,13 +3,15 @@ import SearchImg from '../../assets/search.png';
 import SearchExtra from './search-extra';
 import { OpenCloseBarsContext } from '../../contexts/close-sub-search-bars.jsx';
 import CloseImg from '../../assets/cancel.png';
+import ArrowUpImg from '../../assets/caret-arrow-up.png';
+import ArrowDownImg from '../../assets/down-arrow.png';
 
 const SearchDiv = () => {
   const Container = {
     height: '100%',
-    width: '100%',
-    marginLeft: '10px',
-    marginRight: '10px',
+    width: '95%',
+    margin: '0px 35px 0px 35px',
+    
     zIndex: '3',
   };
   const Row = {
@@ -56,11 +58,12 @@ const SearchDiv = () => {
     backgroundColor: 'white',
     height: '95%',
     width: '99.99%',
+    borderRadius: '25px',
   };
   const IconDiv = {
     display: 'flex',
-    paddingRight: '0px',
-    marginRight: '10px',
+    paddingRight: '10px',
+    marginLeft: '10px',
   };
   const Input = {
     height: '85%',
@@ -78,9 +81,18 @@ const SearchDiv = () => {
     alignItems: 'center',
     justifyContent: 'center',
     height: '100%',
-    width: '10%',
+    width: '5%',
     cursor: 'pointer',
   };
+
+  const PicDiv = {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: '10px',
+    width: '10px',
+    cursor: 'pointer',
+  }
 
   const { isSubSearchBarClosed, toggleSubSearchBar } = useContext(OpenCloseBarsContext);
   const [searchInput, setSearchInput] = useState('');
@@ -108,8 +120,12 @@ const SearchDiv = () => {
 
   const handleClearClick = () => {
     setSearchInput('');
-    setData(null); // Optionally clear fetched data
+    setData(null);  
   };
+
+  const showSubSearchBar = () => {
+    toggleSubSearchBar(false);
+  } 
 
   return (
     <div className='container-fluid' style={Container}>
@@ -131,11 +147,11 @@ const SearchDiv = () => {
               <img src={CloseImg} style={{ height: '16px', width: '16px' }} />
             </div>
 
-            <div>
+            <div onClick={() => showSubSearchBar()} style={CloseDiv}>
               {isSubSearchBarClosed ? (
-                <span style={{ color: 'red', fontSize: '16px' }}>❌</span>
+                <div style={PicDiv}><img src={ArrowUpImg}  style={{ height:'14px', width:'14px' }}/></div>
               ) : (
-                <span style={{ color: 'green', fontSize: '16px' }}>✔️</span>
+                <div style={PicDiv}><img src={ArrowDownImg} style={{ height:'20px', width:'20px' }}/></div>
               )}
             </div>
           </div>

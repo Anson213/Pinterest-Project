@@ -3,7 +3,7 @@ import {Routes, Route} from 'react-router-dom'
 import NavColumn from './high-order-component/home/navigation-column.jsx'
 import SearchDiv from './high-order-component/home/search-div.jsx'
 import SearchExtra from './high-order-component/home/search-extra.jsx'
-import './App.css'
+//import './App.css'
 import { PageContext } from './contexts/show-page-context.jsx'
 import Home from './pages/home/home.jsx'
 import Create from './pages/create/create.jsx'
@@ -13,60 +13,97 @@ import Message from './pages/message/message.jsx'
 
 
 function App() {
-  
-  const { showPage, setShowPage } = useContext(PageContext);
+  const { showPage } = useContext(PageContext);
+
+  const containerStyle = {
+    height: '100vh',
+    width: '100vw',
+    display: 'flex',
+    flexDirection: 'row',
+    overflow: 'hidden',
+  };
 
   const leftColumnStyle = {
     height: '100%',
     width: '6%',
-    display: 'flex',
-    flex: '0',
-    flexDirection: 'column',
-    backgroundColor: 'gray ',
+    minWidth: '72px',
+    backgroundColor: 'gray',
     borderRight: '1px solid black',
-    padding:'2.5px',
-    minWidth:'72px',
-    zIndex: '1'
-    };
+    padding: '2.5px',
+    display: 'flex',
+    flexDirection: 'column',
+    zIndex: 1,
+  };
+
+  const rightColumnStyle = {
+    height: '100%',
+    flexGrow: 1,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    backgroundColor: 'blue',
+    overflow: 'hidden',
+  };
+
+  const searchDivStyle = {
+    height: '12.5%',
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    borderBottom: '1px solid black',
+    backgroundColor: 'gray',
+    zIndex: 2,
+  };
+
+  const bottomRowStyle = {
+    flexGrow: 1,
+    display: 'flex',
+    flexDirection: 'row',
+    backgroundColor: 'grey',
+    justifyContent: 'center',
+  };
+
+  const pageWrapperStyle = {
+    width: '100%',
+    maxWidth: '1300px',
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+  };
 
   return (
-    <div style={{height:'100%', width:'100%', border: '0px'}}>
-    <div className="container" style={{ height: '100vh', width: '100vw', border: '0px' }}>
-    <div className="row" style={{ height: '100%', display: 'flex', flexDirection: 'row' }}>
-      
+    <div style={containerStyle}>
       {/* Left Column */}
-      <div className="col-md-3 left-column" style={leftColumnStyle}>
-           <NavColumn />
+      <div style={leftColumnStyle}>
+        <NavColumn />
       </div>
-      
-      {/* Conditional Rendered Components */}
-      {showPage === 'update' && <Update />}
-      {showPage === 'more-option' && <MoreOption />}
-      {showPage === 'message' && <Message />}
 
-      {/* Right Column */}
-      <div className="col-md-9 right-column" style={{ height: '100%', width:'100%', display: 'flex', flexDirection: 'column', backgroundColor: 'blue', }}>
-        
+      {/* Main Content */}
+      <div style={rightColumnStyle}>
         {/* Search Row */}
-          <div style={{height:'12.5%', width:'100%',  zIndex:"1", display:'flex', flexDirection:'row', border:'1px solid black', backgroundColor:'gray'}}> 
-            <SearchDiv/>
-          </div>
-
-        {/* Page Row */}
-        <div className="bottom-row" style={{ flexGrow: 1, backgroundColor: 'grey', display: 'flex', height: '90%'}}>
-          <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'row' }}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/create" element={<Create />} />
-          </Routes>
-          </div>          
+        <div style={searchDivStyle}>
+          <SearchDiv />
         </div>
+
+        {/* Page Content */}
+        <div style={bottomRowStyle}>
+          <div style={pageWrapperStyle}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/create" element={<Create />} />
+            </Routes>
+          </div>
+        </div>
+
+        {/* Conditional Components */}
+        {showPage === 'update' && <Update />}
+        {showPage === 'more-option' && <MoreOption />}
+        {showPage === 'message' && <Message />}
       </div>
     </div>
-  </div>
-  </div>
-  )
+  );
 }
+
 export default App;
 
 

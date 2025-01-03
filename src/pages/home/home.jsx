@@ -1,20 +1,13 @@
-import React from 'react';
+import ContentGrid from "../../high-order-component/home/content-grid.jsx";
+
 
 const Home = () => {
     return (
-        <div > 
-            <h1>Home Page</h1>
-            {/* Add your home page content here */}
+        <div style={{height:'100%', width:'100%', border: '0px'}}> 
+            <ContentGrid />
         </div>
     );
 };
 
 export default Home;
 
-
-//style={{
-//    display: 'flex',
-//    justifyContent: 'center',
-  //  alignItems: 'center',
-   // height: '90vh'
-//}}>

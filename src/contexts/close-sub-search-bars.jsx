@@ -6,10 +6,10 @@ export const OpenCloseBarsContext = createContext();
 
 
 export const OpenCloseBarsProvider = ({ children }) => {
-    const [isSubSearchBarClosed, setIsSubSearchBarOpen] = useState(false);
+    const [isSubSearchBarClosed, setIsSubSearchBarOpen] = useState(true);
 
     const toggleSubSearchBar = () => {
-        setIsSubSearchBarOpen(prevState => !prevState);
+        setIsSubSearchBarOpen(!isSubSearchBarClosed);
     };
 
     return (
