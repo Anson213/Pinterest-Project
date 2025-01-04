@@ -43,10 +43,11 @@ function App() {
     alignItems: 'center',
     backgroundColor: 'blue',
     overflow: 'hidden',
+    width:'94%',
   };
 
   const searchDivStyle = {
-    height: '12.5%',
+    height: '15%',
     width: '100%',
     display: 'flex',
     flexDirection: 'row',
@@ -61,11 +62,15 @@ function App() {
     flexDirection: 'row',
     backgroundColor: 'grey',
     justifyContent: 'center',
+    height:'85%',
+    width:'100%'
   };
 
   const pageWrapperStyle = {
     width: '100%',
     maxWidth: '1300px',
+    minWidth: 0,
+    flex: 1,
     height: '100%',
     display: 'flex',
     flexDirection: 'row',

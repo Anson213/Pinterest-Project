@@ -14,24 +14,57 @@ const ContentGrid = () => {
   ];
 
 
- const Grid = {
+ /* const Grid = {
   display: 'grid',
-  gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
-  gap: '16px', /* Space between grid items */
-  padding: '16px', /* Optional padding around the grid */
+  gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
+  gap: '10px', 
+  padding: '16px',
   width: '100%',
+  maxWidth:'1300px',
   boxSizing: 'border-box',
+ }*/
+  
+ const Container = {
+  padding:'10px 0px',
  }
+ 
+
+  const Row = {
+    display: 'flex',
+    flexDirectiom:'column',
+    justifyContent:'space-evenly',
+    flexWrap: 'wrap',
+    gap:'10px',   
+    width: '100%',
+    maxWidth:'1300px',
+    minWidth:0,
+    flex:1,
+    boxSizing: 'border-box',
+  }
 
   return (
-    <div className="content-grid" style={Grid}>
+    <div className="container" style={Container}>
+    <div className="row g-2 flex-wrap" style={Row}>
       {pins.map((pin) => (
-        <div key={pin.id} className="pin-wrapper" style={{display:'flex', flexWrap:'2'}} >
-          <div style={{height:'250px', width:'250px', border:'solid black 1px'}}></div>
+        <div key={pin.id} className="col-12 col-sm-6 col-md-4 col-lg-3">
+         <PinCard />
         </div>
       ))}
     </div>
+  </div>
   );
 };
 
 export default ContentGrid;
+
+
+
+/* 
+    <div className="content-grid" style={Grid}>
+      {pins.map((pin) => (
+        <div key={pin.id} className="pin-wrapper" style={{ flexWrap:'wrap', width:'100%'}} >
+          <div style={{height:'250px', width:'250px', border:'solid black 1px'}}></div>
+        </div>
+      ))}
+    </div>
+*/
