@@ -40,6 +40,7 @@ const PinCard = ({ image, title, description }) => {
         justifyContent: 'center',
         borderTopLeftRadius: '10px',
         borderTopRightRadius: '10px',
+        position:'relative',
     };
 
     const DetailsHousing = {
