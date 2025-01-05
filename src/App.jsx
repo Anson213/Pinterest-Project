@@ -2,7 +2,6 @@ import { useContext } from 'react';
 import {Routes, Route} from 'react-router-dom'
 import NavColumn from './high-order-component/home/navigation-column.jsx'
 import SearchDiv from './high-order-component/home/search-div.jsx'
-import SearchExtra from './high-order-component/home/search-extra.jsx'
 //import './App.css'
 import { PageContext } from './contexts/show-page-context.jsx'
 import Home from './pages/home/home.jsx'
@@ -47,7 +46,7 @@ function App() {
   };
 
   const searchDivStyle = {
-    height: '15%',
+    height: '12.5%',
     width: '100%',
     display: 'flex',
     flexDirection: 'row',

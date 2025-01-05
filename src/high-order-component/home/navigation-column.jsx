@@ -1,4 +1,5 @@
 import {useContext} from 'react';
+import { useNavigate } from 'react-router-dom'
 import HomeImage from '../../assets/home.png';
 import CreateImg from '../../assets/add.png';
 import UpdateImg from '../../assets/bell.png';
@@ -50,18 +51,21 @@ const NavCol = () => {
     }
 
 
+      const navigate = useNavigate();
+
+
     return (
         <div className="nav-col" style={Housing}>
 
             <div className="nav-item" style={DivStyle}>
                 <div className="nav-icon" >
-                    <img src={HomeImage} alt='home' style={IconStyle} />
+                    <img src={HomeImage} alt='home' style={IconStyle} onClick= {() => navigate('/')} />
                 </div>
             </div>
 
             <div className="nav-item" style={DivStyle}>
                 <div className="nav-icon">
-                    <img src={CreateImg} alt='Create' style={IconStyle}/>
+                    <img src={CreateImg} alt='Create' style={IconStyle} onClick= {() => navigate('/create')}/>
                 </div>
             </div>
 
