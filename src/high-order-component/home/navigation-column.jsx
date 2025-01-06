@@ -92,5 +92,3 @@ const NavCol = () => {
 }
 
 export default NavCol;
-
-//style={{backgroundColor:'black', height:'100vh', width:'72px', padding:'20px', top:'-20px', left:'-20px'}} className='d-flex flex-column position-fixed h-100 bg-light text-center'
