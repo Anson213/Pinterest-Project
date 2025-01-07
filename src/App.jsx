@@ -66,11 +66,12 @@ function App() {
   };
 
   const pageWrapperStyle = {
+    flexGrow:'1',
     width: '100%',
     maxWidth: '1300px',
     minWidth: 0,
     flex: 1,
-    height: '100%',
+    minheight: '100%',
     display: 'flex',
     flexDirection: 'row',
   };
