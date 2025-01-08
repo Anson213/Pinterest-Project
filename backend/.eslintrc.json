@@ -1,0 +1,16 @@
+{
+  "env": {
+      "node": true,       // Allows Node.js global variables and Node.js scoping
+      "commonjs": true,   // Allows use of require
+      "es2021": true      // Enables ES2021 syntax
+  },
+  "extends": "eslint:recommended",
+  "parserOptions": {
+      "ecmaVersion": "latest"
+  },
+  "rules": {
+      "no-unused-vars": ["error", {
+          "argsIgnorePattern": "next|^_"
+      }]
+  }
+}
