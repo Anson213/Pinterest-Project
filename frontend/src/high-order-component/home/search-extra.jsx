@@ -8,10 +8,11 @@ const SearchExtra = () => {
 
 
     const Container = {
+        position:'absolute',
         zIndex: '10',
-        height: '200%',
-        width: '90%',
-        marginTop: '5px',
+        height: '40%',
+        width: '80%',
+        marginTop: '75px',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',

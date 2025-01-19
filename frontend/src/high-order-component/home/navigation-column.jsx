@@ -10,7 +10,7 @@ import { PageContext } from '../../contexts/show-page-context.jsx';
 
 
 const NavCol = () => {
-    const {showPage, setShowPage} = useContext(PageContext);
+    const {showPage, setShowPage, showWindow, setShowWindow} = useContext(PageContext);
 
     const Housing ={
         height: '100%',
@@ -70,19 +70,19 @@ const NavCol = () => {
             </div>
 
             <div className="nav-item" style={DivStyle}>
-                <div className="nav-icon" onClick={() => setShowPage(showPage ? '' : 'update')}>
+                <div className="nav-icon" onClick={() => {setShowPage(showPage ? '' : 'update'); setShowWindow(!showWindow)}}>
                     <img src={UpdateImg} alt='Updates' style={IconStyle}/>
                 </div>
             </div>
 
             <div className="nav-item" style={DivStyle}>
-                <div className="nav-icon" onClick={() => setShowPage(showPage ? '' : 'message')}>
+                <div className="nav-icon" onClick={() => {setShowPage(showPage ? '' : 'message'); setShowWindow(!showWindow)}}>
                     <img src={MessageImg} alt='Messages' style={IconStyle}/>
                 </div>
             </div>
 
             <div className="nav-item" style={MoreOptionDiv}>
-                <div className="nav-icon" onClick={() => setShowPage(showPage ? '' : 'more-option')}>
+                <div className="nav-icon" onClick={() => {setShowPage(showPage ? '' : 'more-option'); setShowWindow(!showWindow)}}>
                     <img src={SettingImg} alt='Messages' style={IconStyle}/>
                 </div>
             </div>

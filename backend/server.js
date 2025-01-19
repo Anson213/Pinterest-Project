@@ -2,9 +2,10 @@
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
+const authRoutes = require('./routes/authRoutes');
 
 // Load environment variables before any other code
-dotenv.config();
+dotenv.config({ path: './configuration/.env' });
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -36,10 +37,8 @@ app.get('/health', (req, res) => {
     res.status(200).json({ status: 'ok', timestamp: new Date() });
 });
 
-// Root route
-app.get('/', (req, res) => {
-    res.json({ message: 'Welcome to the API' });
-});
+// Login or Signin route
+app.use('/api/auth', authRoutes);
 
 // Start server with error handling
 const startServer = async () => {

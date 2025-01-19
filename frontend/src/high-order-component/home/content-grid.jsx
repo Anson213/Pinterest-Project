@@ -20,7 +20,7 @@ const ContentGrid = () => {
 
   
  const Container = {
-  padding:'10px 0px 20px 0px',
+  padding:'10px 0px ',
  }
  
 
@@ -29,9 +29,9 @@ const ContentGrid = () => {
     flexDirectiom:'column',
     justifyContent:'space-evenly',
     flexWrap: 'wrap',
-    gap:'10px',   
-    height:'95%',
-    maxHeight: 'calc(100vh - 90px)',
+    gap:'10px 10px',   
+    height:'100%',
+    maxHeight: 'calc(100vh - 15px)',
     width: '100%',
     maxWidth:'1300px',
     minWidth:0,

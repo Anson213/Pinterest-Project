@@ -7,10 +7,11 @@ export const PageContext = createContext();
 
 export const ShowPageProvider = ({ children }) => {
     const [showPage, setShowPage] = useState("");
+    const [showWindow, setShowWindow] = useState(false)
 
 
     return (
-        <PageContext.Provider value={{ showPage, setShowPage }}>
+        <PageContext.Provider value={{ showPage, setShowPage, showWindow, setShowWindow }}>
             {children}
         </PageContext.Provider>
     );
