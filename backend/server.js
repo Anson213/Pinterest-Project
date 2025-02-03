@@ -40,6 +40,9 @@ app.get('/health', (req, res) => {
 // Login or Signin route
 app.use('/api/auth', authRoutes);
 
+//Image upload routes
+app.use('/api/create', require('./routes/createRoutes'));
+
 // Start server with error handling
 const startServer = async () => {
     try {

@@ -11,7 +11,7 @@ node_modules
 dist
 dist-ssr
 *.local
-./controllers/.env 
+./configurations/.env 
 
 # Editor directories and files
 .vscode/*

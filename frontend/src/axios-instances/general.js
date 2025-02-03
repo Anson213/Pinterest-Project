@@ -14,8 +14,9 @@ const axiosInstance = axios.create({
 axiosInstance.interceptors.request.use(
   async (config) => {
     let accessToken = localStorage.getItem('access_token');
+    let refreshToken = localStorage.getItem('refresh_token');
 
-    if (!accessToken) {
+    if (!accessToken && refreshToken) {
       accessToken = await refreshAccessToken(); // Attempt to refresh
       if (!accessToken) {
         logout(); // If refresh fails, logout user
