@@ -41,7 +41,7 @@ app.get('/health', (req, res) => {
 app.use('/api/auth', authRoutes);
 
 //Image upload routes
-app.use('/api/create', require('./routes/createRoutes'));
+app.use('/api/create', require('./routes/pinRoutes'));
 
 // Start server with error handling
 const startServer = async () => {
