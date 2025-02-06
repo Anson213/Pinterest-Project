@@ -38,4 +38,37 @@ const verifyRefreshToken = (token) => {
   }
   }
 
-module.exports = { verifyAccessToken, verifyRefreshToken, generateAccessToken, generateRefreshToken };
+  const decodeAccessToken = (token) => {
+    try {
+      const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET); // Renamed for clarity
+  
+      return decodedToken; 
+    } catch (error) {
+      if (error.name === 'TokenExpiredError') {
+        return { error: 'Access token expired' };
+      } else if (error.name === 'JsonWebTokenError') {
+        return { error: 'Invalid access token' };
+      }
+      return { error: 'Token verification failed' };
+    }
+  };
+
+  const decodeRefreshToken = (token) => {
+    try {
+      const decodedToken = jwt.verify(token, process.env.REFRESH_TOKEN_SECRET); // Renamed for clarity
+  
+      return decodedToken; 
+    } catch (error) {
+      if (error.name === 'TokenExpiredError') {
+        return { error: 'Access token expired' };
+      } else if (error.name === 'JsonWebTokenError') {
+        return { error: 'Invalid access token' };
+      }
+      return { error: 'Token verification failed' };
+    }
+  };
+
+module.exports = { verifyAccessToken, verifyRefreshToken,
+                   generateAccessToken, generateRefreshToken,
+                   decodeAccessToken, decodeRefreshToken
+                  };

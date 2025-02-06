@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const authRoutes = require('./routes/authRoutes');
+const pinRoutes = require('./routes/pinRoutes');
 
 // Load environment variables before any other code
 dotenv.config({ path: './configuration/.env' });
@@ -39,9 +40,8 @@ app.get('/health', (req, res) => {
 
 // Login or Signin route
 app.use('/api/auth', authRoutes);
-
 //Image upload routes
-app.use('/api/create', require('./routes/pinRoutes'));
+app.use('/api/create', pinRoutes);
 
 // Start server with error handling
 const startServer = async () => {
