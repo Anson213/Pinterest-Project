@@ -36,7 +36,7 @@ const deletePin = async (id) => {
      const assetId = pin.imageId;
 
      const cloudinaryResponse = await cloudinary.uploader.destroy(assetId);
-     await  Pin.findByIdAndDelete(id);
+     const deletedPin = await Pin.findByIdAndDelete(id);
 
      res.status(200).json({ success: true, message: 'Pin deleted successfully' });     
 

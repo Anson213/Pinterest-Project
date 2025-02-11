@@ -10,6 +10,8 @@ import Update from './pages/update/update.jsx'
 import MoreOption from './pages/more-option/more-option.jsx'
 import Message from './pages/message/message.jsx'
 import SignIn from './pages/sign-in_log-in/sign-in.jsx'
+import User from './pages/user/userPage.jsx'
+import Pin from './pages/pin/pin.jsx'
 
 
 function App() {
@@ -48,6 +50,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/create" element={<Create />} />
+            <Route path='/user/' element={<User/>} />
+            <Route path='/pin/' element={<Pin/>} />
           </Routes>
         </div>
       </div>

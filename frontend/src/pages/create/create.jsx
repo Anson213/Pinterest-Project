@@ -6,11 +6,6 @@ import './create.css'
 
 const Create = () => {
  
-
-    const [isDraftVisible, setDraftVisibility] = useState(false);
-
-    const pin = { count: 1 };
-
     const [formData, setFormData] = useState({
         media: '',
         title: '',
@@ -117,29 +112,9 @@ const Create = () => {
 
                 </div>
 
-                <div className="draft-column "> 
-                {isDraftVisible ? (
-                        <div className='expanded-div'>
-                            <div className='button-container-one'>
-                                <div className='expand-btn-one' onClick={() => setDraftVisibility(!isDraftVisible)}></div>
-                                 <h3 className='header-draft'>Pin Drafts {pin.count}</h3>
-                                 <div className='new-pin-one'>Create new</div>
-                            </div>
-                            <div className='draft-show'>
-                              {/*The draftPinCard component is mapped here */}
-                            </div>
-                        </div>
-                    ) : (
-                        <div className="contracted-div" >
-                            <div className="button-container-two">
-                                <div className='expand-btn-two' onClick={() => setDraftVisibility(!isDraftVisible)}></div>
-                                <div className='new-pin-two'onClick={resetFormData}></div>
-                            </div>
-                        </div>
-                    )}
-                </div>
+                
 
-                </div>
+            </div>
 
         </div>
 

@@ -11,7 +11,7 @@ const uploadData = async (req, res) => {
  
         userId = decodedToken._id;
 
-        const pin = await createPin(req.file, req.body, userId); //This function merely sends data to uploadCloudinary.js
+        const pin = await createPin(req.file, req.body, userId); //This function merely sends data to pinCloudinary.js
         res.status(201).json({ success: true, data: pin });
       } catch (error) {
         res.status(400).json({ success: false, message: error.message });

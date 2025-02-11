@@ -21,10 +21,10 @@ const pinSchema = new mongoose.Schema({
        type: String,
        required: true,
     },
-       boardId: { 
-       type: String, 
+       boardId: [{ 
+       type: Array, 
        required: true,
-    },
+    }],
 }, { timestamps: true });
 
 module.exports = mongoose.model('Pin', pinSchema);

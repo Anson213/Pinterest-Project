@@ -14,6 +14,22 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  imageId : {
+    type: String,
+    required: false
+  },
+  imageUrl : {
+    type: String,
+    required: false
+  },
+  followers: [{
+    type: Array,
+    required: false
+  }],
+  following: [{
+    type: Array,
+    required: false
+  }]
 }, { timestamps: true });
 
 

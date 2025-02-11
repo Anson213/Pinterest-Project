@@ -1,0 +1,171 @@
+.content{
+    height:100%;
+    min-height: calc(100% - 100px);
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow:'auto';
+    overflow-x:hidden ;
+    overflow-y:  auto ;
+}
+
+.content::-webkit-scrollbar {
+    display: none; /* Hides scrollbar in Chrome, Safari, and Edge */
+}
+
+.user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
+    width: 50%;
+    padding-top:150px;
+    padding-bottom:25px;
+    margin-top:150px;
+}
+
+.userImage {
+   
+    width: 165px;
+    height: 165px;
+    border-radius: 50%;
+    border:1px solid black;
+    align-items: center;
+    margin-top:15px;
+}
+
+.username {
+    font-size: 20px;
+    margin: 10px;
+}
+
+.email {
+    font-size: 15px;
+    margin: 10px;
+}
+
+.follow-status{
+    font-size: 15px;
+    margin:10px;
+}
+
+.profile-buttons{
+    display:flex;
+    flex-direction: row;
+}
+
+.button1{
+    height: 50px;
+    width: 65px;
+    margin:5px;
+    padding:10px;
+    border-radius: 10px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+}
+
+.button2{
+    height: 50px;
+    width: 100px;
+    margin:5px;
+    padding:10px;
+    border-radius: 10px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+}
+
+.select {
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 15px;
+    padding:5px;
+    width: 95%;
+    border: 1px solid black;
+    height:50px;
+}
+
+.infoButton1{
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items:center;
+    margin: 0 5px;
+    width: 5%;
+    height: 35px;
+}
+
+.infoButton2{
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items:center;
+    margin: 0 5px;
+    width: 5%;
+    height: 35px;
+}
+
+.infoButton1:active{
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 0 5px;
+    width: 5%;
+    background-color: white;
+    height: 35px;
+}
+
+.infoButton2:active{
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 0 5px;
+    width: 5%;
+    background-color: white;
+    height: 35px;
+}
+
+.accessibility {
+    display:flex;
+    flex-direction:row;
+    margin: 15px;
+    width: 95%;
+    padding: 15px;
+    border: 1px solid black;
+    justify-content: space-between;
+}
+
+.filter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border:1px solid black;
+    width:5%;
+    height: 40px;
+    border-radius: 5px;
+}
+
+.create{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border:1px solid black;
+    width:5%;
+    height: 40px;
+    border-radius: 5px;
+}
+
+.boards{
+    height:100px;
+    margin-bottom: 20px;
+    width: 95%;
+    border: 1px solid black;
+    padding:100px
+}

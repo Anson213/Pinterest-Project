@@ -1,4 +1,5 @@
-import { useState, useContext, useEffect } from 'react';
+import { useState, useContext} from 'react';
+import { useNavigate } from 'react-router-dom'
 import SearchImg from '../../assets/search.png';
 import SearchExtra from './search-extra';
 import { OpenCloseBarsContext } from '../../contexts/close-sub-search-bars.jsx';
@@ -7,6 +8,9 @@ import ArrowUpImg from '../../assets/caret-arrow-up.png';
 import ArrowDownImg from '../../assets/down-arrow.png';
 
 const SearchDiv = () => {
+
+  const navigate = useNavigate();
+
   const Container = {
     height: '100%',
     width: '95%',
@@ -56,9 +60,9 @@ const SearchDiv = () => {
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'white',
-    height: '95%',
+    height: '90%',
     width: '99.99%',
-    borderRadius: '25px',
+    borderRadius: '20px',
   };
   const IconDiv = {
     display: 'flex',
@@ -127,6 +131,8 @@ const SearchDiv = () => {
     toggleSubSearchBar(false);
   } 
 
+  
+
   return (
     <div className='container-fluid' style={Container}>
       <div className="row" style={Row}>
@@ -157,12 +163,12 @@ const SearchDiv = () => {
           </div>
         </div>
 
-        <div className="col-md-4" style={AccountBox}>
-          Box 2
+        <div className="col-md-4" style={AccountBox} onClick={() => navigate('/user')}>
+          User page 
         </div>
 
         <div className="col-md-4" style={AccOption}>
-          Box 3
+          log in/out
         </div>
       </div>
       {/* Only show SearchExtra if the sub-search bar is not closed */}
