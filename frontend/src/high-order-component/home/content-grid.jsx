@@ -1,5 +1,6 @@
-
+import React from "react";
 import PinCard from "./pin-card";
+//import "./content-grid.css"; // Import the separated CSS file
 
 const ContentGrid = () => {
   const pins = [
@@ -15,38 +16,37 @@ const ContentGrid = () => {
     { id: 10, image: "img2.jpg", title: "Pin 2", description: "Description 2" },
     { id: 11, image: "img3.jpg", title: "Pin 3", description: "Description 3" },
     { id: 12, image: "img4.jpg", title: "Pin 4", description: "Description 4" },
-];
+  ];
 
-
+  const Container = {
+    padding:'10px 0px ',
+   }
+   
   
- const Container = {
-  padding:'10px 0px ',
- }
+    const Row = {
+      display: 'flex',
+      flexDirectiom:'column',
+      justifyContent:'space-evenly',
+      flexWrap: 'wrap',
+      gap:'10px 10px',   
+      height:'100%',
+      maxHeight: 'calc(100vh - 5px)',
+      width: '100%',
+      maxWidth:'1300px',
+      minWidth:0,
+      flex:1,
+      boxSizing: 'border-box',
+      overflow:'auto',
+      overflowX:'hidden',
+      overflowY: 'auto',
+    }
  
-
-  const Row = {
-    display: 'flex',
-    flexDirectiom:'column',
-    justifyContent:'space-evenly',
-    flexWrap: 'wrap',
-    gap:'10px 10px',   
-    height:'100%',
-    maxHeight: 'calc(100vh - 15px)',
-    width: '100%',
-    maxWidth:'1300px',
-    minWidth:0,
-    flex:1,
-    boxSizing: 'border-box',
-    overflow:'auto',
-    overflowX:'hidden',
-    overflowY: 'auto',
-  }
 
   return (
     <div className="container" style={Container}>
-    <div className="row g-2 flex-wrap" style={Row}>
+    <div className="row" style={Row} >
       {pins.map((pin) => (
-        <div key={pin.id} className="col-12 col-sm-6 col-md-4 col-lg-3">
+        <div key={pin.id} className="o">
          <PinCard />
         </div>
       ))}
