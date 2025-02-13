@@ -7,7 +7,7 @@ import './create.css'
 const Create = () => {
  
     const [formData, setFormData] = useState({
-        media: '',
+        media: null,
         title: '',
         description: '',
         link: '',
