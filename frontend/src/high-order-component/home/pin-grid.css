@@ -1,0 +1,20 @@
+.grid {
+    width: 100%;
+    margin: 10px 15px;
+    overflow-y: auto;
+  }
+  
+  .grid-sizer,
+  .grid-item {
+    width: calc(25% - 10px); /* 3 columns with 10px gutter */
+    margin-bottom: 10px;
+  }
+  
+  .grid-item {
+    float: left;
+  }
+  
+  .grid-item img {
+    width: 100%;
+    display: block;
+  }

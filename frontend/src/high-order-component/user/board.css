@@ -1,19 +1,22 @@
 .board {
     width: 250px;
-    height: 300px;
+    height: 215px;
     border-radius: 12px;
     overflow: hidden;
     background-color: white;
     display: flex;
-    flex-direction: column;
-    border: 1px solid #ddd;
+    flex-direction: row;
+    border: 1px solid black;
     cursor: pointer;
-    transition: transform 0.2s ease;
+    
 }
 
-.board:hover {
+ /*
+  transition: transform 0.2s ease;
+ */
+/*.board:hover {
     transform: scale(1.05);
-}
+}*/
 
 .board-header {
     padding: 10px;

@@ -1,5 +1,4 @@
 import './board.css';
-import PropTypes from 'prop-types';
 
 const Board = () => {
     return (

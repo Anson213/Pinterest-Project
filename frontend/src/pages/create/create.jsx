@@ -29,7 +29,7 @@ const Create = () => {
 
     const handleInputChange = (e) => {
         const { id, value, files } = e.target;
-        if (files) {
+        if (files && files.length > 0) {
             setFormData({ ...formData, media: files[0] });
         } else {
             setFormData({ ...formData, [id]: value });
@@ -79,7 +79,7 @@ const Create = () => {
                                  style={{
                                      cursor: "pointer",
                                      height: "100%",
-                                     opacity: 1,
+                                     opacity: 0,
                                      position: "absolute",
                                      width: "100%",
                                    }}

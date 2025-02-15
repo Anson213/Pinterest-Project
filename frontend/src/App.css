@@ -49,9 +49,9 @@
 
 .bottom-row {
     display: flex;
-    flex-direction: row;
+    
     background-color: grey;
-    justify-content: center;
+    
     height: 85%;
     width: 100%;
     flex-grow:1;

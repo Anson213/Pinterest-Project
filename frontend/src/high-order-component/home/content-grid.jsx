@@ -1,9 +1,10 @@
-import React from "react";
-import PinCard from "./pin-card";
-//import "./content-grid.css"; // Import the separated CSS file
+//import PinCard from "./pin-card";
+import PinGrid from "./pin-grid";
 
 const ContentGrid = () => {
-  const pins = [
+
+  //add the API call for pins of said user.
+  const items = [
     { id: 1, image: "img1.jpg", title: "Pin 1", description: "Description 1" },
     { id: 2, image: "img2.jpg", title: "Pin 2", description: "Description 2" },
     { id: 3, image: "img3.jpg", title: "Pin 3", description: "Description 3" },
@@ -17,41 +18,10 @@ const ContentGrid = () => {
     { id: 11, image: "img3.jpg", title: "Pin 3", description: "Description 3" },
     { id: 12, image: "img4.jpg", title: "Pin 4", description: "Description 4" },
   ];
-
-  const Container = {
-    padding:'10px 0px ',
-   }
-   
-  
-    const Row = {
-      display: 'flex',
-      flexDirectiom:'column',
-      justifyContent:'space-evenly',
-      flexWrap: 'wrap',
-      gap:'10px 10px',   
-      height:'100%',
-      maxHeight: 'calc(100vh - 5px)',
-      width: '100%',
-      maxWidth:'1300px',
-      minWidth:0,
-      flex:1,
-      boxSizing: 'border-box',
-      overflow:'auto',
-      overflowX:'hidden',
-      overflowY: 'auto',
-    }
  
 
   return (
-    <div className="container" style={Container}>
-    <div className="row" style={Row} >
-      {pins.map((pin) => (
-        <div key={pin.id} className="o">
-         <PinCard />
-        </div>
-      ))}
-    </div>
-  </div>
+    <PinGrid items={items} />    
   );
 };
 
