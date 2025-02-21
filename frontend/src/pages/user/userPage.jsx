@@ -1,12 +1,13 @@
 import './userPage.css';
 import {useState} from 'react';
-import Board from '../../high-order-component/user/board';
-import PinCard from '../../high-order-component/home/pin-card';
-
-//frontend\src\high-order-component\user\board.jsx
-
+//import Board from '../../high-order-component/user/board-card';
+//import PinCard from '../../high-order-component/home/pin-card';
+import BoardGrid from './board-grid';
+import PinGrid from './user-pin-grid';
 
 const UserPage = () => {
+
+    //API call to get user data. 
 
     const [userData, setUserData] = useState({
        name: 'name',
@@ -48,20 +49,12 @@ const UserPage = () => {
             </div>
 
              {changePage === true ? (
-                <div className='boards'>
-               { userData.boards.map((board) => (
-                        <div className='board' key={board}>
-                            <Board />
-                        </div>
-                     ))}
-            </div>
+                 <div className='boards'>
+                    <BoardGrid items={userData.boards} />
+                </div>
              ) : (
               <div className='pins'>
-                  { userData.pin.map((pin) => (
-                        <div className='pin' key={pin}>
-                            <PinCard />
-                        </div>
-                     ))}
+                  <PinGrid items={userData.pin} />
               </div>
              )}
         </div>
@@ -69,4 +62,3 @@ const UserPage = () => {
 };
 
 export default UserPage;
-

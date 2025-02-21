@@ -2,8 +2,8 @@ import { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import Masonry from 'masonry-layout';
 import imagesloaded from 'imagesloaded';
-import Pin from './pin-card'; // Import the Pin component
-import './pin-grid.css'; // Import the CSS file
+import Pin from '../../high-order-component/home/pin-card'; // Import the Pin component
+import './user-pin-grid.css'; // Import the CSS file
 
 const MasonryGrid = ({ items }) => {
   const gridRef = useRef(null);
@@ -22,7 +22,6 @@ const MasonryGrid = ({ items }) => {
         msnry.layout();
       });
 
-      
     }
   }, [items]);
 
@@ -34,7 +33,6 @@ const MasonryGrid = ({ items }) => {
       {item.map((item,) => (
         <div key={item.id} className="grid-item">
           <Pin
-            id={item.id}
             image={item.image}
             title={item.title}
             description={item.description}

@@ -161,37 +161,18 @@
 }
 
 .boards{
-    margin-bottom: 80px;
+    margin-bottom: 120px;
     width: 95%;
     border: 1px solid black;
-    padding: 0px 175px;
-    display: flex;
-    flex-direction: row;
-    justify-content: start;
-    align-items: center;
-    flex-wrap: wrap;
-    min-height: 100%;
+    padding: 0px ;   
+
 }
 
-.board{
-    border:1px solid black;
-    margin: 10px 10px;
-    height: 40%;
-    width: 30%;
-}
+/*175px <- Asshole for the boards*/
 
 .pins{
     margin-bottom: 100px;
     width: 95%;
     border: 1px solid black;
-    padding: 0px 175px;
-    display: flex;
-    flex-direction: row;
-    
-    flex-wrap: wrap;
     min-height: 100%;
-}
-
-.pin{
-    margin:10px;
 }

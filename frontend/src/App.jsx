@@ -12,10 +12,13 @@ import Message from './pages/message/message.jsx'
 import SignIn from './pages/sign-in_log-in/sign-in.jsx'
 import User from './pages/user/userPage.jsx'
 import Pin from './pages/pin/pin.jsx'
+import Board from "./pages/board/board.jsx";
+
 
 
 function App() {
   const { showPage, showWindow } = useContext(PageContext);
+  
   const [isLoggedIn, setLogIn] = useState(true)
   
 
@@ -23,7 +26,7 @@ function App() {
   return (
     isLoggedIn === true ?  (
     <div className='container' >
-    {/* Left Column */}
+
     <div className='left-column' >
       <NavColumn />
     
@@ -51,7 +54,8 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/create" element={<Create />} />
             <Route path='/user/' element={<User/>} />
-            <Route path='/pin/' element={<Pin/>} />
+            <Route path='/pin/:pinId' element={<Pin/>} />
+            <Route path='/board/:boardId' element={<Board/>}/>
           </Routes>
         </div>
       </div>

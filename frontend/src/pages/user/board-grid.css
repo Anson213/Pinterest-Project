@@ -1,18 +1,18 @@
 .grid {
     width: 100%;
-    margin: 4px 16px;
     overflow-y: auto;
-    padding-left: 25px;
+    padding-right: 15px;
   }
   
   .grid-sizer,
   .grid-item {
-    width: calc(25% - 8px); /* 4 columns with 10px gutter */
-    margin-bottom: 8px;
+    width: calc(20% - 8px); /* 5 columns with 8px gutter */
   }
   
   .grid-item {
     float: left;
+    margin:0px;
+    padding:0px;
   }
   
   .grid-item img {
