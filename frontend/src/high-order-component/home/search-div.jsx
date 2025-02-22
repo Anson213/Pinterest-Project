@@ -44,17 +44,7 @@ const SearchDiv = () => {
     minWidth: '48px',
     marginTop: '2.5px',
   };
-  const AccOption = {
-    backgroundColor: '#f8f9fa',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '30px',
-    border: '1px solid black',
-    width: '2.5%',
-    minWidth: '24px',
-    marginTop: '15px',
-  };
+  
   const InputDiv = {
     display: 'flex',
     justifyContent: 'center',
@@ -167,9 +157,6 @@ const SearchDiv = () => {
           User page 
         </div>
 
-        <div className="col-md-4" style={AccOption}>
-          log in/out
-        </div>
       </div>
       {/* Only show SearchExtra if the sub-search bar is not closed */}
       {isSubSearchBarClosed ? null : <SearchExtra />}

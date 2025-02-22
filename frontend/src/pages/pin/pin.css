@@ -1,0 +1,134 @@
+.pin-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    overflow-y:auto;
+    flex-grow: 1;
+    min-height: 100vh; /* Prevent overflow */
+    margin-bottom:450px;
+}
+
+.pin-content{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    height:500px;
+    width:65%;
+    margin-top: 15px;
+}
+
+.image-pin{
+    height:100%;
+    width:50%;
+    border: 1px solid black;
+}
+
+.input-data{
+    height:100%;
+    width:50%;
+    border: 1px solid black;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.interactions{
+    height:12.5%;
+    width:100%;
+    border: 1px solid black;
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.like-btn{
+    height:40px;
+    width: 35px;
+    border: 1px solid black;
+    margin-left:10px;
+}
+
+.like-counter{
+    height: 25px;
+    width: 50px;
+    border: 1px solid black;
+    margin-left:20px;
+}
+
+.board-select{
+    height:30px;
+    width: 80px;
+    border: 1px solid black;
+    margin-left:auto;
+    margin-right:30px;
+}
+
+.save-btn{
+    height: 30px;
+    width: 60px;
+    border: 1px solid black;
+    margin-right:20px;
+}
+
+.account{
+    height:7.5%;
+    width:100%;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.account-img{
+    height: 25px;
+    width: 25px;
+    border: 1px solid black;
+    margin-left:20px;
+}
+
+.account-btn{
+    height: 20px;
+    width: 30%;
+    border: 1px solid black;
+    margin-left:20px;
+}
+
+.comments{
+    height:70%;
+    width:100%;
+    border: 1px solid black;
+}
+
+.comments-btn-container{
+    height:10%;
+    width:100%;
+    border: 1px solid black;
+    display:flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.comment-btn{
+    height: 30px;
+    width: 60px;
+    border: 1px solid black;
+    margin-left:20px;
+}
+
+.comment-display{
+    height:90%;
+    width:100%;
+    border: 1px solid black;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.extra-pin-grid{
+    height:50px;
+    width:50px;
+    border: 1px solid black;
+    margin-top: 15px;
+}

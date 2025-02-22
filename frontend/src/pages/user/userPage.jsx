@@ -15,7 +15,25 @@ const UserPage = () => {
        email: 'email21@gmail.com',
        followers: '1',
        following: '1',
-       boards:[1,2,3,4,5,6],
+       boards:[
+        {
+            id: 1,
+            pin: [
+                { id: 1, image: "img1.jpg", title: "Pin 1", description: "Description 1" },
+                { id: 2, image: "img2.jpg", title: "Pin 2", description: "Description 2" },
+                { id: 3, image: "img3.jpg", title: "Pin 3", description: "Description 3" },
+            ],
+            name: 'board1',
+        },
+        {
+            id: 2,
+            pin: [
+                { id: 1, image: "img1.jpg", title: "Pin 1", description: "Description 1" },
+                { id: 2, image: "img2.jpg", title: "Pin 2", description: "Description 2" },
+                { id: 3, image: "img3.jpg", title: "Pin 3", description: "Description 3" },
+            ],
+            name: 'board2',
+        }, ],
        pin:[1,2,3,4,5,6],
     });
 

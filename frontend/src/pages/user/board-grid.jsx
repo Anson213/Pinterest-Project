@@ -30,7 +30,11 @@ const MasonryGrid = ({ items }) => {
       <div className="grid-sizer"></div>
       {items.map((item, index) => (
         <div key={index} className="grid-item">
-          <Board {...item} />
+          <Board 
+           id={item.id} 
+           pin={item.pin} 
+           name={item.name}  
+           />
         </div>
       ))}
     </div>

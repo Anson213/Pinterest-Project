@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 //title, description, user 
 
 const PinCard = ({ image, id}) => {
-    const navigate = useNavigate();;
+    const navigate = useNavigate();
     const {  setId } = useContext(IdSupplierContext);
 
     const handlePinClick = (e) => {
