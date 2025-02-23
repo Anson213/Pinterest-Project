@@ -11,7 +11,7 @@ const boardRoutes = require('./routes/boardRoutes');
 dotenv.config({ path: './configuration/.env' });
 
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3000;
 
 // CORS Configuration (Improved Security)
 const corsOptions = {
@@ -49,6 +49,7 @@ const asyncHandler = fn => (req, res, next) => {
 };
 
 // Routes
+app.use('/api/test', testRoutes)
 app.use('/api/auth', authRoutes);
 app.use('/api/create', pinRoutes);
 app.use('/api/board', boardRoutes);

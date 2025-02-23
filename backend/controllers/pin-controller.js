@@ -9,7 +9,7 @@ const uploadData = async (req, res) => {
       const token = req.headers['authorization']?.split(' ')[1];
       const decodedToken = decodeAccessToken(token);
  
-        userId = decodedToken._id;
+      const  userId = decodedToken._id;
 
         const pin = await createPin(req.file, req.body, userId); //This function merely sends data to pinCloudinary.js
         res.status(201).json({ success: true, data: pin });

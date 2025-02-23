@@ -1,5 +1,5 @@
-import cloudinary from '../configurations/cloudinary.js';
-import Pin from '../data-models/pinSchema.js';
+const cloudinary = require('../configurations/cloudinary'); 
+const Pin = require('../data-models/pinSchema');
 
 
 const createPin = async (file, pinData, userId) => {

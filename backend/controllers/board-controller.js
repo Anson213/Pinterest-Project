@@ -1,6 +1,6 @@
-const Board = require('../models/board-model');
-const User = require('../models/user-model');
-const Pin = require('../models/pin-model');
+const Board = require('../data-models/boardSchema.js');
+const User = require('../data-models/userSchema.js');
+const Pin = require('../data-models/pinSchema.js');
 
 const createBoard = async (req, res) => {
     const { name, description } = req.body.board;

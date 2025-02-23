@@ -1,4 +1,4 @@
-import cloudinary from '../configurations/cloudinary.js';
+const cloudinary = require('../configurations/cloudinary'); 
 import User from '../data-models/userSchema.js';
 
 
@@ -14,4 +14,4 @@ const createUser = async (file, userData) => {
         use_filename: true,
         unique_filename: false,
     });
-    
+} 
