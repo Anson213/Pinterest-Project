@@ -1,18 +1,22 @@
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const path = require('path');
 
-dotenv.config({ path: './configuration/.env' });
+dotenv.config({ path: path.join(__dirname, '.env')});
 
-const connectDB = async (uri = process.env.MONGODB_URL) => {
+const connectDB = async () => {
   try {
+    const uri = process.env.MONGODB_URL;
     if (!uri) {
       throw new Error('Environment variable MONGODB_URL is not defined.');
     }
 
-    await mongoose.connect(uri);
+    await mongoose.connect(uri, {
+      serverSelectionTimeoutMS: 5000, // Timeout after 5 seconds
+    });
     console.log('Database connected successfully');
   } catch (error) {
-    console.error('Database connection failed:', error.message);
+    console.log('Database connection failed:', error.message);
     process.exit(1); 
   }
 };
@@ -36,23 +40,3 @@ process.on('SIGINT', async () => {
 });
 
 module.exports = connectDB;
-
-
-/*
-dotenv.config({ path: './configuration/.env' });
-
-const connectDB = async () => {
-  try {
-    await mongoose.connect(process.env.MONGODB_URL, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-    console.log('Database connected successfully');
-  } catch (error) {
-    console.error('Database connection failed:', error.message);
-    process.exit(1);
-  }
-};
-
-module.exports = connectDB;
-*/

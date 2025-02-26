@@ -1,16 +1,19 @@
 const multer = require('multer');
+const path = require('path');
 
 const storage = multer.memoryStorage();
 
 const fileFilter = (req, file, cb) => {
-    const allowedTypes = /jpeg|jpg|png|mp4|avi/;
-    const extname = allowedTypes.test(path.extname(file.originalname).toLowerCase());
-    const mimetype = allowedTypes.test(file.mimetype);
+    const allowedExtentions = /\.(jpeg|jpg|png|mp4|avi)$/i;
+    const allowedMimes = ['image/jpeg', 'image/png', 'video/mp4', 'video/avi', 'video/x-msvideo'];
+
+    const isValidExt = allowedExtentions.test(path.extname(file.originalname).toLowerCase());
+    const isValidMime = allowedMimes.includes(file.mimetype);
     
-    if (extname && mimetype) {
+    if (isValidExt && isValidMime) {
       return cb(null, true); // Accept the file
     } else {
-      cb(new Error('Invalid file type'), false); // Reject the file
+      cb(new multer.MulterError('LIMIT_UNEXPECTED_FILE', 'Invalid file type'));// Reject the file
     }
   };
 

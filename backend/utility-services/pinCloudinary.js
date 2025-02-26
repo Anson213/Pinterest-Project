@@ -37,8 +37,12 @@ const deletePin = async (id) => {
 
      const cloudinaryResponse = await cloudinary.uploader.destroy(assetId);
      const deletedPin = await Pin.findByIdAndDelete(id);
-
-     res.status(200).json({ success: true, message: 'Pin deleted successfully' });     
+     
+     if(cloudinaryResponse && deletedPin) {
+       return res.status(200).json({ success: true, message: 'Pin deleted successfully' });  ;
+     } else {
+        return res.status(500).json({ success: false, message: 'Server error, Pin not Deleted' });
+     }
 
    } catch (error) {
      throw new Error('Error deleting pin');

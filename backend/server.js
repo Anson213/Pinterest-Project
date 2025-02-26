@@ -6,9 +6,11 @@ const compression = require('compression');
 const authRoutes = require('./routes/authRoutes');
 const pinRoutes = require('./routes/pinRoutes');
 const boardRoutes = require('./routes/boardRoutes');
+const testRoutes = require('./routes/testRoutes');
+const connectDB = require('./configurations/data-bases.js')
 
 // Load environment variables
-dotenv.config({ path: './configuration/.env' });
+dotenv.config({ path: '../configuration/.env' });
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -71,6 +73,7 @@ app.use((err, req, res, next) => {
 // Start Server
 const startServer = async () => {
     try {
+        connectDB();
         app.listen(port, () => {
             console.log(`Server running on port ${port} in ${process.env.NODE_ENV || 'development'} mode`);
         });
