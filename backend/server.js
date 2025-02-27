@@ -30,7 +30,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Helmet Security Config
-app.use(helmet({
+/*app.use(helmet({
     hidePoweredBy: true,
     frameguard: { action: 'deny' },
     noSniff: true,
@@ -43,11 +43,28 @@ app.use(helmet({
             scriptSrc: ["'self'", 'trusted-cdn.com'],
         },
     },
+}));*/
+
+app.use(helmet());
+app.use(helmet.hidePoweredBy()); 
+app.use(helmet.frameguard({ action: 'deny' })); 
+app.use(helmet.noSniff());
+app.use(helmet.ieNoOpen()); 
+app.use(helmet.hsts({ maxAge: 15552000, force: true })); // 6 months
+app.use(helmet.dnsPrefetchControl({ allow: false })); 
+
+app.use(helmet.contentSecurityPolicy({
+    directives: {
+        defaultSrc: ["'self'"],
+        scriptSrc: ["'self'", 'trusted-cdn.com'],
+    },
 }));
 
 // Async Error Handling Middleware
-const asyncHandler = fn => (req, res, next) => {
-    Promise.resolve(fn(req, res, next)).catch(next);
+const asyncHandler = (fn) => {
+    return (req, res, next) => {
+        Promise.resolve(fn(req, res, next)).catch(next);
+    };
 };
 
 // Routes
@@ -63,10 +80,19 @@ app.get('/health', (req, res) => {
 
 // Centralized Error Handler (Placed Last)
 app.use((err, req, res, next) => {
-    console.error('Error:', err);
-    res.status(500).json({
+    const statusCode = err.statusCode || 500;
+    const message = err.message || 'Unexpected error occurred';
+
+    if (process.env.NODE_ENV === 'development') {
+        console.error('Error:', err);
+    } else {
+        console.error(`Error [${statusCode}]:`, message);
+    }
+
+    res.status(statusCode).json({
+        success: false,
         error: 'Internal Server Error',
-        message: process.env.NODE_ENV === 'development' ? err.message : 'Something went wrong'
+        message: process.env.NODE_ENV === 'development' ? message : 'Something went wrong'
     });
 });
 
@@ -87,8 +113,18 @@ startServer();
 
 // Handle Unhandled Promise Rejections
 process.on('unhandledRejection', err => {
-    console.error('Unhandled Promise Rejection:', err);
-    process.exit(1);
+    console.error('Unhandled Promise Rejection');
+    console.error(`Message: ${err.message}`);
+    console.error(`Stack: ${err.stack}`);
+
+    // Graceful shutdown before exiting
+    server.close(() => {
+        console.error('Server shutting down due to an unhandled rejection.');
+        process.exit(1);
+    });
+
+    // Force exit if shutdown takes too long
+    setTimeout(() => process.exit(1), 5000).unref();
 });
 
 module.exports = app;
