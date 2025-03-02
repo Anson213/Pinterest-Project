@@ -12,14 +12,9 @@ const hashPassword = async (password) => {
 };
 
 // Function to compare a plain-text password with a hashed password
-const comparePassword = async (password, email, User) => {
+const comparePassword = async (password, hashedPassword) => {
   try {
-    const user = await User.findOne({ email });
-    if (!user) {
-      throw new Error('User not found'); // Handle asshole user
-    }
-
-    const isPasswordCorrect = await bcrypt.compare(password, user.password);
+    const isPasswordCorrect = await bcrypt.compare(password, hashedPassword);
     return isPasswordCorrect; // Simplify return logic
   } catch (error) {
     throw new Error('Error comparing the password'); // Add error handling

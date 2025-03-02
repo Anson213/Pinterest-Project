@@ -1,6 +1,6 @@
 const User = require('../data-models/userSchema')
 //Util-> Make token generator and verifier yourself
-const {generateAccessToken, generateRefreshToken, decodeRefreshToken} = require('../utility-services/jsonTokens');
+const {generateAccessToken, generateRefreshToken, decodeAccessToken, decodeRefreshToken} = require('../utility-services/jsonTokens');
 const {hashPassword, comparePassword} = require('../utility-services/password');
 
 const registerUser = async ( req, res ) => {
@@ -34,7 +34,7 @@ const loginUser = async (req, res) => {
   
     try {
       const user = await User.findOne({ email });
-      const passwordCorrect = await comparePassword(password, email, User);
+      const passwordCorrect = await comparePassword(password, user.password);
       if (user && passwordCorrect) {
         res.status(200).json({
           _id: user._id,
@@ -44,22 +44,29 @@ const loginUser = async (req, res) => {
           accessToken: generateAccessToken(user._id),
         });
       } else {
-        res.status(401).json({ message: 'User not found or Password Invalid' });
+        res.status(401).json({ message: 'Invalid Credentials' });
       }
     } catch (error) {
-      res.status(500).json({ message: 'Server error', error: error.messages });
+      res.status(500).json({ message: 'Server error', error: error.message });
     }
   };
 
   const refreshToken = async (req, res) => {
-    const { refreshToken, _id } = req.body;
-  
-    if (!refreshToken || !_id) {
-      return res.status(401).json({ message: 'Access denied, token missing!' });
-    }
-  
     try {
-      const user = await User.findById(_id);
+      const authHeader = req.headers['authorization'];
+      if (!authHeader) {
+          return res.status(401).json({ message: 'Access denied, token missing!' });
+      }
+
+      const refreshToken = authHeader.startsWith('Bearer ') ? authHeader.split(' ')[1] : authHeader;
+          
+      if (!refreshToken) {
+        return res.status(401).json({ message: 'Access denied, token missing!' });
+      }
+
+      const token = decodeRefreshToken(refreshToken)
+
+      const user = await User.findById(token.id);
       if (!user) {
         return res.status(403).json({ message: 'User not found' });
       }
@@ -72,24 +79,29 @@ const loginUser = async (req, res) => {
   };
 
    const deleteUser = async (req, res) => {
-    const {refreshToken} = req.body;
-
     try{
-         if(!refreshToken){
-          return res.status(401).json({message: 'No token provided'});
-         }
+      const authHeader = req.headers['authorization'];
+      if (!authHeader) {
+          return res.status(401).json({ message: 'Access denied, token missing!' });
+      }
 
-        const decoded = decodeRefreshToken(refreshToken);
-        if (!decoded || !decoded._id) {
+      const accessToken = authHeader.startsWith('Bearer ') ? authHeader.split(' ')[1] : authHeader;
+     
+      if (!accessToken) {
+        return res.status(401).json({ message: 'Access denied, token missing!' });
+      }
+
+        const decoded = decodeAccessToken(accessToken);
+        if (!decoded || !decoded.id) {
           return res.status(403).json({ message: 'Invalid or expired token' });
       }
 
-      const user = await User.findById(decoded.userId);
+      const user = await User.findById(decoded.id);
       if (!user) {
           return res.status(404).json({ message: 'User not found' });
       }
 
-      await User.deleteOne({ _id: decoded.userId });
+      await User.deleteOne({ _id: decoded.id });
 
       res.status(200).json({ message: 'User deleted successfully' });
 

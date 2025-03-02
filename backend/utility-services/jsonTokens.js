@@ -41,10 +41,9 @@ const verifyRefreshToken = (token) => {
 
   const decodeAccessToken = (token) => {
     try {
-      const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET); // Renamed for clarity
+      return decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET); // Renamed for clarity
   
-      return decodedToken; 
-    } catch (error) {
+      } catch (error) {
       if (error.name === 'TokenExpiredError') {
         return { error: 'Access token expired' };
       } else if (error.name === 'JsonWebTokenError') {
@@ -56,9 +55,7 @@ const verifyRefreshToken = (token) => {
 
   const decodeRefreshToken = (token) => {
     try {
-      const decodedToken = jwt.verify(token, process.env.REFRESH_TOKEN_SECRET); // Renamed for clarity
-  
-      return decodedToken; 
+     return decodedToken = jwt.verify(token, process.env.REFRESH_TOKEN_SECRET); // Renamed for clarity
     } catch (error) {
       if (error.name === 'TokenExpiredError') {
         return { error: 'Access token expired' };

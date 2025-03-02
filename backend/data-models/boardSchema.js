@@ -6,12 +6,13 @@ const boardSchema = new mongoose.Schema({
         required: true,
     },
    userId: {
-        type: String,
-        required: true,
+    type: mongoose.Schema.Types.ObjectId, 
+    ref: 'User',  
+    required: true 
     },
     pins: [{
-        type: Array,
-        required: true,
+       type: mongoose.Schema.Types.ObjectId, 
+       ref: 'Pin',  
     }],
 }, { timestamps: true });
 

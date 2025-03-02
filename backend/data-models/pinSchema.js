@@ -18,13 +18,10 @@ const pinSchema = new mongoose.Schema({
        required: true,
     },
       userId: {
-       type: String,
-       required: true,
+         type: mongoose.Schema.Types.ObjectId, 
+         ref: 'User',  
+         required: true 
     },
-       boardId: [{ 
-       type: Array, 
-       required: true,
-    }],
 }, { timestamps: true });
 
 module.exports = mongoose.model('Pin', pinSchema);
