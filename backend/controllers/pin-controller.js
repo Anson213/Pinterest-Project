@@ -13,27 +13,43 @@ const uploadData = async (req, res) => {
       const token = authHeader.startsWith('Bearer ') ? authHeader.split(' ')[1] : authHeader;
       const decodedToken = decodeAccessToken(token);
       const  userId = decodedToken.id;
+      const { title, description} = req.body;
 
-      if (!req.file || !req.body) return res.status(400).json({ message: 'File and data required' });
+      if (!req.file) return res.status(400).json({ message: 'File required' });
+      if (!req.body) return res.status(400).json({ message: 'data required' });
 
-        const pin = await createPin(req.file, req.body, userId); //This function merely sends data to pinCloudinary.js
+        const pin = await createPin(req.file, title, description, userId); //This function merely sends data to pinCloudinary.js
         res.status(201).json({ success: true, data: pin });
 
       } catch (error) {
-        res.status(400).json({ success: false, message: error.message });
+        console.error("Upload Data Error:", error);
+        res.status(400).json({ success: false});
       }
 }
 
 const editData = async (req, res) => {
   try {
-    const token = req.headers['authorization']?.split(' ')[1];
-    if (!token) return res.status(401).json({ success: false, message: 'Unauthorized' });
 
+    const authHeader = req.headers['authorization'];
+      if (!authHeader) {
+          return res.status(401).json({ message: 'Access denied, token missing!' });
+      }
+    
+    const token = authHeader.startsWith('Bearer ') ? authHeader.split(' ')[1] : authHeader;
     const decodedToken = decodeAccessToken(token);
-    const userId = decodedToken.id;
-    const pinId = req.params.id; // Get Pin ID from URL parameters
+    const userId = decodedToken.id;  
 
-    const existingPin = await Pin.findById(pinId);
+    // Only allow metadata updates
+    const { title, description} = req.body;
+    const  pin  = req.params.pinId;
+    if(!pin) return res.status(400).json({message: "where is pin ??"})
+      if (!title && !description) {
+        return res.status(400).json({ message: 'No update fields provided' });
+      }
+  
+    //const pinId = req.pin; // Get Pin ID from URL parameters
+
+    const existingPin = await Pin.findById(pin);
     if (!existingPin) return res.status(404).json({ success: false, message: 'Pin not found' });
 
     // Ensure the user owns the Pin
@@ -41,15 +57,18 @@ const editData = async (req, res) => {
       return res.status(403).json({ success: false, message: 'Forbidden: You do not own this Pin' });
     }
 
-    // Only allow metadata updates
-    const { title, description, board, link } = req.body;
     const updatedPin = await Pin.findByIdAndUpdate(
-      pinId,
-      { title, description, board, link },
+      pin,
+      { title, description},
       { new: true } // Return the updated document
     );
-
-    res.status(200).json({ success: true, data: updatedPin });
+     
+       if(updatedPin) {
+        res.status(200).json({ success: true, data: updatedPin });
+       } else {
+        res.status(400).json({ success: false, message: "Pin Update failed" });
+       }
+    
   } catch (error) {
     res.status(500).json({ success: false, message: 'Server error', error: error.message });
   }
@@ -57,21 +76,28 @@ const editData = async (req, res) => {
 
 const retrieveData = async (req, res) => {
   try {
-    const token = req.headers['authorization']?.split(' ')[1];
-    if (!token) return res.status(401).json({ success: false, message: 'Unauthorized' });
-
+    const authHeader = req.headers['authorization'];
+      if (!authHeader) {
+          return res.status(401).json({ message: 'Access denied, token missing!' });
+      }
+      const token = authHeader.startsWith('Bearer ') ? authHeader.split(' ')[1] : authHeader;
+      
     const decodedToken = decodeAccessToken(token);
     const userId = decodedToken.id;
-    const pinId = req.params.id;
+    const pin = req.params.pinId;
+    if (!pin) {
+      return res.status(400).json({ success: false, message: 'Pin ID is required' });
+    }
 
-    const pin = await Pin.findById(pinId);
-    if (!pin) return res.status(404).json({ success: false, message: 'Pin not found' });
 
-    if (pin.userId.toString() !== userId) {
+    const pinDoc = await Pin.findById(pin);
+    if (!pinDoc) return res.status(404).json({ success: false, message: 'Pin not found' });
+
+    if (pinDoc.userId.toString() !== userId) {
       return res.status(403).json({ success: false, message: 'Forbidden: You do not own this Pin' });
     }
 
-    res.status(200).json({ success: true, data: pin });
+    res.status(200).json({ success: true, data: pinDoc });
     
   } catch (error) {
     res.status(500).json({ success: false, message: 'Server error' });
@@ -81,12 +107,15 @@ const retrieveData = async (req, res) => {
 
 const deleteData = async (req, res) => {
   try {
-    const token = req.headers['authorization']?.split(' ')[1];
-    if (!token) return res.status(401).json({ success: false, message: 'Unauthorized' });
+    const authHeader = req.headers['authorization'];
+    if (!authHeader) {
+      return res.status(401).json({ message: 'Access denied, token missing!' });
+    }
 
+    const token = authHeader.startsWith('Bearer ') ? authHeader.split(' ')[1] : authHeader;
     const decodedToken = decodeAccessToken(token);
     const userId = decodedToken.id;
-    const pinId = req.params.id;
+    const pinId = req.params.pinId;
 
     if (!pinId) return res.status(400).json({ success: false, message: 'Pin ID required' });
 
@@ -101,11 +130,11 @@ const deleteData = async (req, res) => {
     if(deleteImage){
        res.status(200).json({ success: true, message: 'Pin deleted successfully' });
     } else {
-       res.status(500).json({message: 'Something didnt workout', success: false})
+       res.status(500).json({message: 'Failed to delete Pin. Database or Cloudinary issue.', success: false})
     }
 
   } catch (error) {
-    res.status(500).json({ success: false, message: 'Server error' });
+    res.status(500).json({ success: false, message: 'Server error', error: error.message });
   }
 
 }

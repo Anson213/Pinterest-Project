@@ -1,53 +1,60 @@
 const cloudinary = require('../configurations/cloudinary'); 
 const Pin = require('../data-models/pinSchema');
 
-const createPin = async (file, pinData, userId) => {
+const createPin = async (file, title, description, userId) => {
   if (!file) throw new Error('No file uploaded');
 
-   try {
-  // Convert buffer to base64 for Cloudinary
-  const uploadStr = `data:${file.mimetype};base64,${file.buffer.toString('base64')}`;
+  try {
+      // Upload the image using a Promise wrapper
+      const uploadToCloudinary = (fileBuffer) => {
+        return new Promise((resolve, reject) => {
+            const stream = cloudinary.uploader.upload_stream(
+                { folder: 'pins', resource_type: 'image', unique_filename: true },
+                (error, result) => {
+                    if (error) return reject(new Error('Cloudinary upload failed'));
+                    resolve(result);
+                }
+            );
+            stream.end(fileBuffer);
+        });
+    };
 
-  // Upload directly from buffer
-  const result = await cloudinary.uploader.upload(uploadStr, {
-    folder: 'pins',
-    use_filename: true,
-    unique_filename: true,
-  });
+    // Await the Cloudinary upload
+    const result = await uploadToCloudinary(file.buffer);
 
-  // Save to database
-  const newPin = new Pin({
-    title: pinData.title,
-    description: pinData.description,
-    imageUrl: result.secure_url,
-    imageId: result.public_id,
-    userId: userId,
-  });
+    // Save to database
+    const newPin = new Pin({
+        title: title,
+        description: description,
+        imageUrl: result.secure_url,
+        imageId: result.public_id,
+        userId,
+    });
 
     return await newPin.save();
-  } catch (error){
-    throw new Error(`Error creating pin: ${error.message}`);
-  }
+} catch (error) {
+    throw new Error(`Error creating pin: ${error.message} from cloudinary`);
+}
 };
 
  // retrieve pin is not needed as the Cloudinary CDN makes it easy to retrieve images
 
 const deletePin = async (id) => {
    try {
-       const pin = Pin.findById(id);
+       const pin = await Pin.findById(id);
        if (!pin) throw new Error('Pin not found');
 
       const cloudinaryResponse = await cloudinary.uploader.destroy(pin.imageId);
       const deletedPin = await Pin.findByIdAndDelete(id);
      
        if(cloudinaryResponse && deletedPin) {
-         return res.status(200).json({ success: true, message: 'Pin deleted successfully' });  ;
+         return true
        } else {
-         return res.status(500).json({ success: false, message: 'Server error, Pin not Deleted' });
+         return false
        }
 
      } catch (error) {
-       throw new Error('Error deleting pin');
+       throw new Error(`Error deleting pin: ${error.message}`);
     }
 }
 
